@@ -20,4 +20,6 @@ This means that it won't overlap two lines, which is a funny effect but very lim
 Next up:
 - See if I can get PrusaSlicer to generate gcode for a plotter
 - If not, see if I can replace Prusaslicer by inkscape + plugins through a CLI.
-- Alternatives: python svg2gcode, gcodeplot.py 
+  - Alternatives: python svg2gcode, gcodeplot.py 
+
+https://ncviewer.com/ als gcodeviewer, maar ook een lokale variant zoeken. Misschien eentje in node?

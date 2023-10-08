@@ -1,0 +1,66 @@
+<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="2000" height="2000">
+    <path stroke="black" fill="none" d="M0,400L307,11"
+    ></path>
+    <path stroke="black" fill="none" d="M307,11L600,400"
+    ></path>
+    <path stroke="black" fill="none" d="M0,400L307,11"
+    ></path>
+    <path stroke="black" fill="none" d="M10.233,387.033L316.767,23.967"
+    ></path>
+    <path stroke="black" fill="none" d="M20.467,374.067L326.533,36.933"
+    ></path>
+    <path stroke="black" fill="none" d="M30.7,361.1L336.3,49.9"
+    ></path>
+    <path stroke="black" fill="none" d="M40.933,348.133L346.067,62.867"
+    ></path>
+    <path stroke="black" fill="none" d="M51.167,335.167L355.833,75.833"
+    ></path>
+    <path stroke="black" fill="none" d="M61.4,322.2L365.6,88.8"
+    ></path>
+    <path stroke="black" fill="none" d="M71.633,309.233L375.367,101.767"
+    ></path>
+    <path stroke="black" fill="none" d="M81.867,296.267L385.133,114.733"
+    ></path>
+    <path stroke="black" fill="none" d="M92.1,283.3L394.9,127.7"
+    ></path>
+    <path stroke="black" fill="none" d="M102.333,270.333L404.667,140.667"
+    ></path>
+    <path stroke="black" fill="none" d="M112.567,257.367L414.433,153.633"
+    ></path>
+    <path stroke="black" fill="none" d="M122.8,244.4L424.2,166.6"
+    ></path>
+    <path stroke="black" fill="none" d="M133.033,231.433L433.967,179.567"
+    ></path>
+    <path stroke="black" fill="none" d="M143.267,218.467L443.733,192.533"
+    ></path>
+    <path stroke="black" fill="none" d="M153.5,205.5L453.5,205.5"
+    ></path>
+    <path stroke="black" fill="none" d="M163.733,192.533L463.267,218.467"
+    ></path>
+    <path stroke="black" fill="none" d="M173.967,179.567L473.033,231.433"
+    ></path>
+    <path stroke="black" fill="none" d="M184.2,166.6L482.8,244.4"
+    ></path>
+    <path stroke="black" fill="none" d="M194.433,153.633L492.567,257.367"
+    ></path>
+    <path stroke="black" fill="none" d="M204.667,140.667L502.333,270.333"
+    ></path>
+    <path stroke="black" fill="none" d="M214.9,127.7L512.1,283.3"
+    ></path>
+    <path stroke="black" fill="none" d="M225.133,114.733L521.867,296.267"
+    ></path>
+    <path stroke="black" fill="none" d="M235.367,101.767L531.633,309.233"
+    ></path>
+    <path stroke="black" fill="none" d="M245.6,88.8L541.4,322.2"
+    ></path>
+    <path stroke="black" fill="none" d="M255.833,75.833L551.167,335.167"
+    ></path>
+    <path stroke="black" fill="none" d="M266.067,62.867L560.933,348.133"
+    ></path>
+    <path stroke="black" fill="none" d="M276.3,49.9L570.7,361.1"
+    ></path>
+    <path stroke="black" fill="none" d="M286.533,36.933L580.467,374.067"
+    ></path>
+    <path stroke="black" fill="none" d="M296.767,23.967L590.233,387.033"
+    ></path>
+</svg>
