@@ -13,7 +13,7 @@ async function createGCode() {
   /*
     Scale to fit is in mms, 220 being ender 3 bed size.
    */
-  const stlToGcode = `/Applications/PrusaSlicer.app/Contents/MacOS/PrusaSlicer --export-gcode --scale-to-fit 140,140,1 stl/${fileName}.stl --load configs/prusa-config.ini --output gcode/${fileName}.gcode`;
+  const stlToGcode = `/Applications/PrusaSlicer.app/Contents/MacOS/PrusaSlicer --export-gcode --scale-to-fit 120,120,1 stl/${fileName}.stl --load ./configs/prusa-config.ini --output gcode/${fileName}.gcode`;
 
   const stl = await Bun.spawnSync([...svgToStl.split(" ")]);
   console.log("stl success: ", stl.success);
