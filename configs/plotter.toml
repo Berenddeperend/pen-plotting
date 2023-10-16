@@ -1,2 +1,11 @@
 [gwrite.plotter]
+document_start = "G21\nG17\nG90\nG28\nG92 E0\n"
+segment_first = """G0 Z5
+G0 X{x:.4f}f Y{y:.4f}
+G1 Z0 F3500
+"""
+segment = "G1 X{x:.4f} Y{y:.4f}\n"
+document_end = "M2\nM84 X Y E\n"
 unit = "mm"
+vertical_flip = true
+info= "This gcode profile is correctly inverted across the y-axis"
