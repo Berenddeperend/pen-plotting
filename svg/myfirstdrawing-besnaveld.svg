@@ -4,9 +4,9 @@
     <rdf:RDF>
       <cc:Work>
         <dc:format>image/svg+xml</dc:format>
-        <dc:source>vpype --config configs/plotter.toml read svg/myfirstdrawing.svg penwidth 0.3mm scaleto 19cm 19cm pagesize 20cmx20cm write svg/myfirstdrawing-besnaveld.svg
+        <dc:source>vpype --config configs/plotter.toml read svg/myfirstdrawing.svg penwidth 0.3mm pagesize 20cmx20cm scaleto 19cm 19cm write svg/myfirstdrawing-besnaveld.svg
 </dc:source>
-        <dc:date>2023-10-15T18:27:31.935579</dc:date>
+        <dc:date>2023-10-17T23:10:17.965382</dc:date>
       </cc:Work>
     </rdf:RDF>
   </metadata>
