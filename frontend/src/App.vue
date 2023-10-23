@@ -1,10 +1,6 @@
-<script setup>
-import HelloWorld from "./components/HelloWorld.vue";
-</script>
+<script setup></script>
 
-<template>
-  <HelloWorld msg="Vite + Vue" />
-</template>
+<template>krakaka</template>
 
 <style scoped>
 .logo {
