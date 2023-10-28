@@ -1,36 +1,29 @@
-import { useState } from "react";
 import "./App.css";
 import { interpolate, range } from "d3";
 
-const steps = 20;
-const multiplier = 300;
+const steps = 36;
+const multiplier = 10;
 
-const a = [0, 0];
-const b = [1, 0];
-const c = [2, 0];
-const d = [2, 1];
-const e = [2, 2];
-const f = [1, 2];
-const g = [0, 2];
-const h = [0, 1];
-
-const Bezier = ({ points }) => {
+const Squares = () => {
   // console.log(points);
   // return [0, 1, 2, 3, 4, 5].map((item) => item);
 
-  const lines = range(steps).map((i) => {
-    const pointA = points[0];
-    const pointB = points[1];
-    const pointC = points[2];
-
+  const lines = range(steps + 1).map((i) => {
     return (
-      <line
-        x1={interpolate(pointA[0], pointB[0])(i / steps) * multiplier}
-        y1={interpolate(pointA[1], pointB[1])(i / steps) * multiplier}
-        x2={interpolate(pointB[0], pointC[0])(i / steps) * multiplier}
-        y2={interpolate(pointB[1], pointC[1])(i / steps) * multiplier}
-        stroke={"orange"}
-      ></line>
+      <>
+        <rect
+          x={((steps - i) / 2) * multiplier}
+          y={((steps - i) / 2) * multiplier}
+          width={i * multiplier}
+          height={i * multiplier}
+          transform={`rotate(${i * 0.5})`}
+          transform-origin={`${(steps / 2) * multiplier} ${
+            (steps / 2) * multiplier
+          }`}
+          fill="transparent"
+          stroke={"orange"}
+        ></rect>
+      </>
     );
   });
 
@@ -38,8 +31,6 @@ const Bezier = ({ points }) => {
 };
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
     <>
       <svg
@@ -47,11 +38,9 @@ function App() {
         xmlns="http://www.w3.org/2000/svg"
         width="2000"
         height="2000"
+        viewBox="-100 -100 2000 2000"
       >
-        <Bezier points={[h, a, b]} />
-        <Bezier points={[b, c, d]} />
-        <Bezier points={[d, e, f]} />
-        <Bezier points={[f, g, h]} />
+        <Squares />
       </svg>
     </>
   );
