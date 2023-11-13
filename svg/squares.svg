@@ -1,1 +1,43 @@
-<svg id="svg" xmlns="http://www.w3.org/2000/svg" width="2000" height="2000" viewBox="-100 -100 2000 2000"><rect x="180" y="180" width="0" height="0" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(0)"></rect><rect x="175" y="175" width="10" height="10" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(2)"></rect><rect x="170" y="170" width="20" height="20" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(4)"></rect><rect x="165" y="165" width="30" height="30" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(6)"></rect><rect x="160" y="160" width="40" height="40" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(8)"></rect><rect x="155" y="155" width="50" height="50" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(10)"></rect><rect x="150" y="150" width="60" height="60" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(12)"></rect><rect x="145" y="145" width="70" height="70" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(14)"></rect><rect x="140" y="140" width="80" height="80" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(16)"></rect><rect x="135" y="135" width="90" height="90" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(18)"></rect><rect x="130" y="130" width="100" height="100" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(20)"></rect><rect x="125" y="125" width="110" height="110" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(22)"></rect><rect x="120" y="120" width="120" height="120" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(24)"></rect><rect x="115" y="115" width="130" height="130" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(26)"></rect><rect x="110" y="110" width="140" height="140" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(28)"></rect><rect x="105" y="105" width="150" height="150" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(30)"></rect><rect x="100" y="100" width="160" height="160" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(32)"></rect><rect x="95" y="95" width="170" height="170" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(34)"></rect><rect x="90" y="90" width="180" height="180" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(36)"></rect><rect x="85" y="85" width="190" height="190" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(38)"></rect><rect x="80" y="80" width="200" height="200" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(40)"></rect><rect x="75" y="75" width="210" height="210" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(42)"></rect><rect x="70" y="70" width="220" height="220" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(44)"></rect><rect x="65" y="65" width="230" height="230" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(46)"></rect><rect x="60" y="60" width="240" height="240" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(48)"></rect><rect x="55" y="55" width="250" height="250" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(50)"></rect><rect x="50" y="50" width="260" height="260" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(52)"></rect><rect x="45" y="45" width="270" height="270" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(54)"></rect><rect x="40" y="40" width="280" height="280" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(56)"></rect><rect x="35" y="35" width="290" height="290" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(58)"></rect><rect x="30" y="30" width="300" height="300" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(60)"></rect><rect x="25" y="25" width="310" height="310" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(62)"></rect><rect x="20" y="20" width="320" height="320" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(64)"></rect><rect x="15" y="15" width="330" height="330" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(66)"></rect><rect x="10" y="10" width="340" height="340" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(68)"></rect><rect x="5" y="5" width="350" height="350" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(70)"></rect><rect x="0" y="0" width="360" height="360" transform-origin="180 180" fill="transparent" stroke="orange" transform="rotate(72)"></rect></svg>
+<svg style="border: 1px solid red;" id="svg" xmlns="http://www.w3.org/2000/svg" width="2000" height="2000" viewBox="-400 -400 2000 2000"><rect y="0" width="0" height="0" transform="
+          rotate(0)
+          translate(200 200)" fill="transparent" stroke="orange" x="0"></rect><rect y="-5" width="20" height="20" transform="
+          rotate(2)
+          translate(190 190)" fill="transparent" stroke="orange" x="5"></rect><rect y="-10" width="40" height="40" transform="
+          rotate(4)
+          translate(180 180)" fill="transparent" stroke="orange" x="10"></rect><rect y="-15" width="60" height="60" transform="
+          rotate(6)
+          translate(170 170)" fill="transparent" stroke="orange" x="15"></rect><rect y="-20" width="80" height="80" transform="
+          rotate(8)
+          translate(160 160)" fill="transparent" stroke="orange" x="20"></rect><rect y="-25" width="100" height="100" transform="
+          rotate(10)
+          translate(150 150)" fill="transparent" stroke="orange" x="25"></rect><rect y="-30" width="120" height="120" transform="
+          rotate(12)
+          translate(140 140)" fill="transparent" stroke="orange" x="30"></rect><rect y="-35" width="140" height="140" transform="
+          rotate(14)
+          translate(130 130)" fill="transparent" stroke="orange" x="35"></rect><rect y="-40" width="160" height="160" transform="
+          rotate(16)
+          translate(120 120)" fill="transparent" stroke="orange" x="40"></rect><rect y="-45" width="180" height="180" transform="
+          rotate(18)
+          translate(110 110)" fill="transparent" stroke="orange" x="45"></rect><rect y="-50" width="200" height="200" transform="
+          rotate(20)
+          translate(100 100)" fill="transparent" stroke="orange" x="50"></rect><rect y="-55" x="55" width="220" height="220" transform="
+          rotate(22)
+          translate(90 90)" fill="transparent" stroke="orange"></rect><rect y="-60" x="60" width="240" height="240" transform="
+          rotate(24)
+          translate(80 80)" fill="transparent" stroke="orange"></rect><rect y="-65" x="65" width="260" height="260" transform="
+          rotate(26)
+          translate(70 70)" fill="transparent" stroke="orange"></rect><rect y="-70" x="70" width="280" height="280" transform="
+          rotate(28)
+          translate(60 60)" fill="transparent" stroke="orange"></rect><rect y="-75" x="75" width="300" height="300" transform="
+          rotate(30)
+          translate(50 50)" fill="transparent" stroke="orange"></rect><rect y="-80" x="80" width="320" height="320" transform="
+          rotate(32)
+          translate(40 40)" fill="transparent" stroke="orange"></rect><rect y="-85" x="85" width="340" height="340" transform="
+          rotate(34)
+          translate(30 30)" fill="transparent" stroke="orange"></rect><rect y="-90" x="90" width="360" height="360" transform="
+          rotate(36)
+          translate(20 20)" fill="transparent" stroke="orange"></rect><rect y="-95" x="95" width="380" height="380" transform="
+          rotate(38)
+          translate(10 10)" fill="transparent" stroke="orange"></rect><rect y="-100" x="100" width="400" height="400" transform="
+          rotate(40)
+          translate(0 0)" fill="transparent" stroke="orange"></rect></svg>

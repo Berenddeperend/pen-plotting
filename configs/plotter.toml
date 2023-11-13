@@ -5,13 +5,13 @@ G90
 G28
 G92 E0
 """
-segment_first = """G0 Z3
+segment_first = """G0 Z5
 G0 X{x:.4f} Y{y:.4f}
 G1 Z0 F3500
 """
 segment = "G1 X{x:.4f} Y{y:.4f}\n"
 document_end = """M2
-G0 Z20
+G0 Z40
 M84 X Y E
 """
 unit = "mm"
