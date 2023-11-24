@@ -9,7 +9,9 @@ async function createGCode() {
   // const vpype = `vpype --config configs/plotter.toml read svg/bezier.svg linemerge penwidth 0.3mm scaleto 14cm 14cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/bezier.gcode`;
   // const vpype = `vpype --config configs/plotter.toml read svg/spiral-hatched-2.svg linemerge penwidth 0.3mm scaleto 10cm 10cm layout 15x15cm translate 5cm -1cm gwrite -p plotter gcode/spiral-hatched-2.gcode`;
 
-  const vpype = `vpype --config configs/plotter.toml read svg/triangle-spiral-wiki.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/triangle-spiral-wiki.gcode`;
+  // const vpype = `vpype --config configs/plotter.toml read svg/triangle-spiral-wiki.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/triangle-spiral-wiki.gcode`;
+
+  const vpype = `vpype --config configs/plotter.toml read svg/graancirkels-2.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/graancirkels-2.gcode`;
 
   // const vpype = `vpype --config configs/plotter.toml read svg/hourglass.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/hourglass-a5.gcode`;
   // const vpype = `vpype --config configs/plotter.toml read svg/hilbert-wiki.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/hilbert-a5.gcode`;

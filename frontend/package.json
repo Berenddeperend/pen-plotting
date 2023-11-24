@@ -12,6 +12,7 @@
   "dependencies": {
     "@cyrilf/vue-dat-gui": "^0.3.0",
     "cncjs": "^1.10.3",
+    "d3": "^7.8.5",
     "gcode-viewer": "^0.6.0",
     "vue": "^3.3.4"
   },

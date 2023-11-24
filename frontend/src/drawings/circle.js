@@ -3,7 +3,7 @@ import { toMMV } from "../helpers/helpers.js";
 import { line, curveBasisClosed } from "d3";
 
 export default {
-  name: "superellipse",
+  name: "circle",
   draw: (settings) => {
     let { radius, count } = toRaw(settings);
 

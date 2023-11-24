@@ -8,5 +8,11 @@
     "serve": "bun --hot run index.js myfirstdrawing"
   },
   "author": "",
-  "license": "ISC"
+  "license": "ISC",
+  "dependencies": {
+    "express": "^4.18.2"
+  },
+  "devDependencies": {
+    "cors": "^2.8.5"
+  }
 }
