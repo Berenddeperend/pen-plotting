@@ -29,5 +29,6 @@ export default {
   settings: {
     radius: toMMV(0, 300),
     count: toMMV(0, 50),
+    marius: toMMV(0, 50),
   },
 };

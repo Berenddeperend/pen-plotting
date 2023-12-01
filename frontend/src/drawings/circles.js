@@ -3,7 +3,7 @@ import { toMMV } from "../helpers/helpers.js";
 import { line, curveBasisClosed } from "d3";
 
 export default {
-  name: "crosses-grid",
+  name: "circles",
   draw: (settings) => {
     let { rows, columns, spacing, size, rotationMultiplier } = toRaw(settings);
 
@@ -14,15 +14,13 @@ export default {
         output.push(
           `
           <g>
-            <line
-              transform="rotate(${y * x * rotationMultiplier} ${
-                x * spacing + size / 2
-              } ${y * spacing + size / 2})"
-              x1=${x * spacing}
-              x2=${x * spacing + size}
-              y1=${y * spacing}
-              y2=${y * spacing + size}
-            ></line>
+            <circle
+              cx=${x * spacing + size / 2}
+              cy=${y * spacing + size / 2}
+              r=${size / 2}
+              fill="none"
+              stroke="black"
+            ></circle>
           </g>
         `
             .split("\n")
@@ -35,10 +33,9 @@ export default {
   },
 
   settings: {
-    rows: toMMV(0, 300),
-    columns: toMMV(0, 300, 76),
-    spacing: toMMV(0, 100, 9),
-    size: toMMV(0, 50, 5),
-    rotationMultiplier: toMMV(0, 10, 7),
+    rows: toMMV(0, 300, 20),
+    columns: toMMV(0, 300, 20),
+    spacing: toMMV(0, 100, 24),
+    size: toMMV(0, 50, 40),
   },
 };

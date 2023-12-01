@@ -1,6 +1,7 @@
 <script setup>
 import Drawing from "./components/Drawing.vue";
 import { ref } from "vue";
+import PrinterStatus from "./components/PrinterStatus.vue";
 
 const drawings = ref([]);
 const selectedDrawing = ref();
@@ -34,6 +35,7 @@ getDrawings();
     <option v-for="drawing in drawings" :value="drawing">{{ drawing }}</option>
   </select>
 
+  <PrinterStatus />
   <Drawing v-if="selectedDrawing" :selected-drawing="selectedDrawing" />
 </template>
 
