@@ -2,9 +2,15 @@
 import Drawing from "./components/Drawing.vue";
 import { ref } from "vue";
 import PrinterStatus from "./components/PrinterStatus.vue";
+import { usePrinterSettings } from "./stores/printerSettings.js";
+import PrintSettings from "./components/PrintSettings.vue";
+import { useGlobalSettings } from "./stores/global.js";
+import { storeToRefs } from "pinia";
 
-const drawings = ref([]);
-const selectedDrawing = ref();
+const printSettingsStore = usePrinterSettings();
+const globalSettings = useGlobalSettings();
+
+const { selectedDrawing, drawings } = storeToRefs(globalSettings);
 
 const getDrawings = async () => {
   const response = await fetch("http://localhost:8080/files");
@@ -36,7 +42,8 @@ getDrawings();
   </select>
 
   <PrinterStatus />
-  <Drawing v-if="selectedDrawing" :selected-drawing="selectedDrawing" />
+  <PrintSettings />
+  <Drawing />
 </template>
 
 <style scoped></style>

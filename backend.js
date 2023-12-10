@@ -30,7 +30,9 @@ const getFilesFromPrinter = async () => {
   const response = await fetch(
     "http://octopi.local/api/files/local",
     octoPiSettings,
-  );
+  ).catch((err) => {
+    throw new Error(err);
+  });
 
   const files = await response.json();
 
@@ -41,16 +43,20 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/status", async (req, res) => {
-  const response = await fetch(
-    "http://octopi.local/api/printer",
-    octoPiSettings,
-  );
+app.get("/status", async (req, res, next) => {
+  try {
+    const response = await fetch(
+      "http://octopi.local/api/printer",
+      octoPiSettings,
+    );
 
-  res.send(await response.json());
+    res.send(await response.json());
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
-app.post("/print", async (req, res) => {
+app.post("/print", async (req, res, next) => {
   /*
    * 0. save svg to file
    * 1. upload file to octoprint
@@ -58,70 +64,67 @@ app.post("/print", async (req, res) => {
    * 3. print
    * */
 
-  console.log("gottem");
+  try {
+    const randomstring = Math.random().toString(36).substring(7);
 
-  const randomstring = Math.random().toString(36).substring(7);
+    await Bun.write(`./svg/generated/${randomstring}.svg`, req.body.svg);
 
-  await Bun.write(`./svg/generated/${randomstring}.svg`, req.body.svg);
+    const gcode = await Bun.spawnSync([
+      "vpype",
+      "--config",
+      "configs/plotter.toml",
+      "read",
+      `svg/generated/${randomstring}.svg`,
+      "penwidth",
+      "0.4mm",
+      "scaleto",
+      "10cm",
+      "10cm",
+      "layout",
+      "22x22cm",
+      "translate",
+      "5cm",
+      "1cm",
+      "gwrite",
+      "-p",
+      "plotter",
+      `gcode/generated/${randomstring}.gcode`,
+    ]);
 
-  console.log("creating gcode but not really...");
+    const file = Bun.file(`./gcode/generated/${randomstring}.gcode`);
+    // const file = Bun.file(`./gcode/generated/bg29uj.gcode`);
 
-  const gcode = await Bun.spawnSync([
-    "vpype",
-    "--config",
-    "configs/plotter.toml",
-    "read",
-    `svg/generated/${randomstring}.svg`,
-    "penwidth",
-    "0.4mm",
-    "scaleto",
-    "10cm",
-    "10cm",
-    "layout",
-    "22x22cm",
-    "translate",
-    "5cm",
-    "1cm",
-    "gwrite",
-    "-p",
-    "plotter",
-    `gcode/generated/${randomstring}.gcode`,
-  ]);
+    const arrbuf = await file.arrayBuffer();
+    const buffer = Buffer.from(arrbuf);
+    const blob = new Blob([buffer]);
 
-  console.log("created gcode");
+    const uploadFormData = new FormData();
+    uploadFormData.append("file", blob, `${randomstring}.gcode`);
 
-  const file = Bun.file(`./gcode/generated/${randomstring}.gcode`);
-  // const file = Bun.file(`./gcode/generated/bg29uj.gcode`);
+    await fetch(`http://octopi.local/api/files/local`, {
+      method: "POST",
+      body: uploadFormData,
+      headers: {
+        "X-Api-Key": process.env.OCTOPI_KEY,
+      },
+    });
 
-  const arrbuf = await file.arrayBuffer();
-  const buffer = Buffer.from(arrbuf);
-  const blob = new Blob([buffer]);
-  console.log("=>(backend.js:85) blob", blob);
+    await fetch(`http://octopi.local/api/files/local/${randomstring}.gcode`, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-Api-Key": process.env.OCTOPI_KEY,
+      },
+      body: JSON.stringify({
+        command: "select",
+        print: true,
+      }),
+    });
 
-  const uploadFormData = new FormData();
-  uploadFormData.append("file", blob, `${randomstring}.gcode`);
-
-  await fetch(`http://octopi.local/api/files/local`, {
-    method: "POST",
-    body: uploadFormData,
-    headers: {
-      "X-Api-Key": process.env.OCTOPI_KEY,
-    },
-  });
-
-  await fetch(`http://octopi.local/api/files/local/${randomstring}.gcode`, {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-      "X-Api-Key": process.env.OCTOPI_KEY,
-    },
-    body: JSON.stringify({
-      command: "select",
-      print: true,
-    }),
-  });
-
-  res.send(`${randomstring}.gcode`);
+    res.send(`${randomstring}.gcode`);
+  } catch (err) {
+    res.status(500).send(err);
+  }
 });
 
 app.get("/files", (req, res) => {

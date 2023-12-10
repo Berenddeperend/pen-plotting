@@ -11,9 +11,11 @@ async function createGCode() {
 
   // const vpype = `vpype --config configs/plotter.toml read svg/triangle-spiral-wiki.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/triangle-spiral-wiki.gcode`;
 
-  const vpype = `vpype --config configs/plotter.toml read svg/graancirkels-2.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/graancirkels-2.gcode`;
+  // const vpype = `vpype --config configs/plotter.toml read svg/graancirkels-2.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/graancirkels-2.gcode`;
 
-  // const vpype = `vpype --config configs/plotter.toml read svg/hourglass.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/hourglass-a5.gcode`;
+  // const vpype = `vpype --config configs/plotter.toml pixelart --mode snake --pen-width 0.4mm christmas-2.png scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/christmas.gcode`;
+
+  const vpype = `vpype --config configs/plotter.toml read christmas-ascii.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/christmas-ascii.gcode`;
   // const vpype = `vpype --config configs/plotter.toml read svg/hilbert-wiki.svg penwidth 0.4mm scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/hilbert-a5.gcode`;
 
   // const vpype = `vpype --config configs/plotter.toml read svg/circles-3.svg penwidth 0.4mm occult -i scaleto 10cm 10cm layout 22x22cm translate 5cm 1cm gwrite -p plotter gcode/circles-a5.gcode`;

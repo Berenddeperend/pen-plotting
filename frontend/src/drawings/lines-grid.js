@@ -3,7 +3,7 @@ import { toMMV } from "../helpers/helpers.js";
 import { line, curveBasisClosed } from "d3";
 
 export default {
-  name: "crosses-grid",
+  name: "lines-grid",
   draw: (settings) => {
     let { rows, columns, spacing, size, rotationMultiplier } = toRaw(settings);
 
