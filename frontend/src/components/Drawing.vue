@@ -6,31 +6,17 @@ import { useGlobalSettings } from "../stores/global.js";
 import { usePrinterSettings } from "../stores/printerSettings.js";
 import { paperSizeMapping } from "../helpers/helpers.js";
 
-const importedDrawing = ref();
-const settings = ref();
-const svgElement = ref();
+// const importedDrawing = ref();
+// const settings = ref();
+// const svgElement = ref();
 
 const globalSettings = useGlobalSettings();
 const printerSettings = usePrinterSettings();
 
 const { paddingInMM, penWidthInMM, size, orientation } =
   storeToRefs(printerSettings);
-const { selectedDrawing, drawings } = storeToRefs(globalSettings);
-
-const asyncImport = async () => {
-  importedDrawing.value = await import(
-    /* @vite-ignore */
-    `./../drawings/${selectedDrawing.value}`
-  );
-  settings.value = importedDrawing.value.default.settings;
-};
-
-watch(
-  () => selectedDrawing.value,
-  () => {
-    asyncImport();
-  },
-);
+const { selectedDrawing, drawings, settings, importedDrawing } =
+  storeToRefs(globalSettings);
 
 const multiplier = 3.7795275591;
 
@@ -46,7 +32,7 @@ const canvasHeight = computed(() => {
     : paperSizeMapping[size.value].width - 2 * paddingInMM.value.value;
 });
 
-asyncImport();
+// asyncImport();
 
 const toValues = (mmvObj) => {
   return Object.entries(mmvObj).reduce((acc, [key, value]) => {
@@ -54,32 +40,9 @@ const toValues = (mmvObj) => {
     return acc;
   }, {});
 };
-
-const print = () => {
-  fetch("http://localhost:8080/print", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      svg: svgElement.value.outerHTML,
-    }),
-  });
-};
 </script>
 
 <template>
-  <div class="controls">
-    <RangeSlider
-      v-if="settings"
-      v-for="(settingValue, settingKey) in settings"
-      :key="settingKey"
-      :name="settingKey"
-      v-model="settings[settingKey]"
-    />
-    <button @click="print">Print</button>
-  </div>
-
   <svg
     v-if="importedDrawing"
     id="svg"

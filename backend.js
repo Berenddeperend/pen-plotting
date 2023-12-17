@@ -26,6 +26,13 @@ const drawingFiles = fs
     );
   });
 
+const saveSvgLocally = async (
+  file,
+  fileName = Math.random().toString(36).substring(7),
+) => {
+  await Bun.write(`./svg/generated/${fileName}.svg`, file);
+};
+
 const getFilesFromPrinter = async () => {
   const response = await fetch(
     "http://octopi.local/api/files/local",
@@ -56,7 +63,38 @@ app.get("/status", async (req, res, next) => {
   }
 });
 
-app.post("/print", async (req, res, next) => {
+app.post("/preview", async (req, res) => {
+  const randomstring = Math.random().toString(36).substring(7);
+
+  await saveSvgLocally(req.body.svg, randomstring);
+
+  try {
+    await Bun.spawnSync([
+      "vpype",
+      "--config",
+      "configs/plotter.toml",
+      "read",
+      `svg/generated/${randomstring}.svg`,
+      "penwidth",
+      "0.4mm",
+      "scaleto",
+      "4cm",
+      "44cm",
+      "layout",
+      "22x22cm",
+      "translate",
+      "5cm",
+      "1cm",
+      "show",
+    ]);
+
+    res.send("ok");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.post("/print", async (req, res) => {
   /*
    * 0. save svg to file
    * 1. upload file to octoprint
@@ -67,7 +105,7 @@ app.post("/print", async (req, res, next) => {
   try {
     const randomstring = Math.random().toString(36).substring(7);
 
-    await Bun.write(`./svg/generated/${randomstring}.svg`, req.body.svg);
+    await saveSvgLocally(req.body.svg, randomstring);
 
     const gcode = await Bun.spawnSync([
       "vpype",

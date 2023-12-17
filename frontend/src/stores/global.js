@@ -1,5 +1,5 @@
 import { defineStore } from "pinia";
-import { ref } from "vue";
+import { ref, watch } from "vue";
 import { toMMV } from "../helpers/helpers.js";
 import { useLocalStorage } from "@vueuse/core";
 
@@ -7,7 +7,16 @@ export const useGlobalSettings = defineStore("global", () => {
   const selectedDrawing = useLocalStorage("selectedDrawing");
   const drawings = useLocalStorage("drawings", []);
 
+  const importedDrawing = ref();
+  const settings = ref();
+
   const currentDrawingSettings = useLocalStorage("currentDrawingSettings", {});
 
-  return { selectedDrawing, drawings, currentDrawingSettings };
+  return {
+    selectedDrawing,
+    drawings,
+    currentDrawingSettings,
+    importedDrawing,
+    settings,
+  };
 });

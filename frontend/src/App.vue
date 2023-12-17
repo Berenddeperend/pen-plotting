@@ -1,16 +1,18 @@
 <script setup>
 import Drawing from "./components/Drawing.vue";
-import { ref } from "vue";
+import { onMounted, ref, watch } from "vue";
 import PrinterStatus from "./components/PrinterStatus.vue";
 import { usePrinterSettings } from "./stores/printerSettings.js";
 import PrintSettings from "./components/PrintSettings.vue";
 import { useGlobalSettings } from "./stores/global.js";
 import { storeToRefs } from "pinia";
+import DrawingParameters from "./components/DrawingParameters.vue";
 
 const printSettingsStore = usePrinterSettings();
 const globalSettings = useGlobalSettings();
 
-const { selectedDrawing, drawings } = storeToRefs(globalSettings);
+const { selectedDrawing, drawings, importedDrawing, settings } =
+  storeToRefs(globalSettings);
 
 const getDrawings = async () => {
   const response = await fetch("http://localhost:8080/files");
@@ -18,6 +20,23 @@ const getDrawings = async () => {
   drawings.value = data;
   selectedDrawing.value = data[0];
 };
+
+const asyncImport = async () => {
+  importedDrawing.value = await import(
+    /* @vite-ignore */
+    `./drawings/${selectedDrawing.value}`
+  );
+  settings.value = importedDrawing.value.default.settings;
+};
+
+asyncImport();
+
+watch(
+  () => selectedDrawing.value,
+  () => {
+    asyncImport();
+  },
+);
 
 addEventListener("keypress", (event) => {
   if (event.key === "[") {
@@ -43,6 +62,7 @@ getDrawings();
 
   <PrinterStatus />
   <PrintSettings />
+  <DrawingParameters />
   <Drawing />
 </template>
 
