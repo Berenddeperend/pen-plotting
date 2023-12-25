@@ -8,6 +8,7 @@ import { useGlobalSettings } from "./stores/global.js";
 import { storeToRefs } from "pinia";
 import DrawingParameters from "./components/DrawingParameters.vue";
 import DrawingSelector from "./components/DrawingSelector.vue";
+import PreviewAndPrint from "./components/PreviewAndPrint.vue";
 
 const globalSettings = useGlobalSettings();
 
@@ -33,17 +34,20 @@ watch(
 </script>
 
 <template>
-  <div class="topbar mb-6 py-2 bg-stone-600">
+  <div class="topbar mb-6 px-4 py-2 bg-stone-600">
     <div class="max-w-[1200px] m-auto flex items-center gap-5 justify-between">
       <PrinterStatus class="text-white" />
       <DrawingSelector class="drawing-selector min-w-52" />
     </div>
   </div>
-  <div class="max-w-[1200px] m-auto">
-    <div class="flex justify-between">
+  <div class="max-w-[1200px] px-4 m-auto">
+    <div class="flex gap-4 justify-between">
       <PrintSettings class="print-settings" />
       <Drawing class="drawing bg-white" />
-      <DrawingParameters class="drawing-parameters rounded-sm" />
+      <div>
+        <DrawingParameters class="drawing-parameters rounded-sm" />
+        <PreviewAndPrint />
+      </div>
     </div>
   </div>
 </template>

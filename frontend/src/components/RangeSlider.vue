@@ -11,7 +11,7 @@ const update = (value) => {
 
 <template>
   <!--  <input type="range" v-model="modelValue" :min="0" :max="300" />-->
-  <div class="flex justify-between">
+  <div class="flex justify-between mt-3">
     <pre>{{ name }}</pre>
     <pre>{{ props.modelValue.value }}</pre>
   </div>

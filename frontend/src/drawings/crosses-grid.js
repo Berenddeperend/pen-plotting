@@ -5,7 +5,7 @@ import { line, curveBasisClosed } from "d3";
 export default {
   name: "lines-grid",
   draw: (settings) => {
-    let { rows, columns, spacing, size, rotation, jelle } = toRaw(settings);
+    let { rows, columns, spacing, size, rotation } = toRaw(settings);
 
     const output = [];
 
@@ -48,7 +48,6 @@ export default {
   settings: {
     rows: toMMV(0, 60, 20),
     columns: toMMV(0, 60, 13),
-    jelle: toMMV(0, 60, 13),
     spacing: toMMV(0, 100, 19),
     size: toMMV(0, 50, 10),
     rotation: toMMV(0, 100, 45),

@@ -4,5 +4,10 @@ export default {
   theme: {
     extend: {},
   },
+  safelist: [
+    {
+      pattern: /^(opacity|cursor)-/,
+    },
+  ],
   plugins: [],
 };
