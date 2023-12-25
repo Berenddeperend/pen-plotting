@@ -6,6 +6,7 @@ import { useLocalStorage } from "@vueuse/core";
 export const useGlobalSettings = defineStore("global", () => {
   const selectedDrawing = useLocalStorage("selectedDrawing");
   const drawings = useLocalStorage("drawings", []);
+  const svgElement = ref();
 
   const importedDrawing = ref();
   const settings = ref();
@@ -18,5 +19,6 @@ export const useGlobalSettings = defineStore("global", () => {
     currentDrawingSettings,
     importedDrawing,
     settings,
+    svgElement,
   };
 });

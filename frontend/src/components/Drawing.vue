@@ -1,21 +1,16 @@
 <script setup>
 import { computed, ref, watch } from "vue";
-import RangeSlider from "./RangeSlider.vue";
 import { storeToRefs } from "pinia";
 import { useGlobalSettings } from "../stores/global.js";
 import { usePrinterSettings } from "../stores/printerSettings.js";
 import { paperSizeMapping } from "../helpers/helpers.js";
-
-// const importedDrawing = ref();
-// const settings = ref();
-// const svgElement = ref();
 
 const globalSettings = useGlobalSettings();
 const printerSettings = usePrinterSettings();
 
 const { paddingInMM, penWidthInMM, size, orientation } =
   storeToRefs(printerSettings);
-const { selectedDrawing, drawings, settings, importedDrawing } =
+const { selectedDrawing, drawings, settings, importedDrawing, svgElement } =
   storeToRefs(globalSettings);
 
 const multiplier = 3.7795275591;
@@ -31,8 +26,6 @@ const canvasHeight = computed(() => {
     ? paperSizeMapping[size.value].height - 2 * paddingInMM.value.value
     : paperSizeMapping[size.value].width - 2 * paddingInMM.value.value;
 });
-
-// asyncImport();
 
 const toValues = (mmvObj) => {
   return Object.entries(mmvObj).reduce((acc, [key, value]) => {

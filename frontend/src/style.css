@@ -1,6 +1,9 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
 .controls {
-    position: absolute;
-    right: 0;
+    /*position: absolute;*/
+    /*right: 0;*/
     width: 200px;
-    border: 1px solid black;
 }

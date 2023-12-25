@@ -1,7 +1,7 @@
 <script setup>
 import { onMounted, ref } from "vue";
 
-const printerStatus = ref();
+const printerStatus = ref({ state: { text: "Fetching printer status..." } });
 const error = ref(false);
 
 const getPrinterStatus = () => {
@@ -10,6 +10,7 @@ const getPrinterStatus = () => {
       return response.json();
     })
     .then((data) => {
+      error.value = false;
       printerStatus.value = data;
     })
     .catch(() => {
@@ -25,23 +26,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="bar">
+  <div class="bar text-sm">
     <div v-if="printerStatus && !error">
-      Status: {{ printerStatus?.state?.text }}
+      <!--      {{   printerStatus?.state?.text }}-->
+      {{ printerStatus }}
     </div>
     <div v-if="error">Error: Could not connect to printer</div>
   </div>
 </template>
-
-<style scoped>
-.bar {
-  position: fixed;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  background-color: #333;
-  color: #fff;
-  padding: 1rem;
-  font-family: sans-serif;
-}
-</style>

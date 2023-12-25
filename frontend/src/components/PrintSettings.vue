@@ -8,6 +8,9 @@ const printerSettings = usePrinterSettings();
 const { paddingInMM, penWidthInMM } = storeToRefs(printerSettings);
 </script>
 <template>
-  <RangeSlider name="padding" v-model="paddingInMM" />
-  <input type="text" v-model="penWidthInMM" />
+  <div>
+    <RangeSlider name="padding" v-model="paddingInMM" />
+    <br />
+    <input type="text" v-model="penWidthInMM" />
+  </div>
 </template>
