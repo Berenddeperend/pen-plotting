@@ -10,21 +10,38 @@ const printerSettings = usePrinterSettings();
 
 const { paddingInMM, penWidthInMM, size, orientation } =
   storeToRefs(printerSettings);
-const { selectedDrawing, drawings, settings, importedDrawing, svgElement } =
-  storeToRefs(globalSettings);
+const {
+  selectedDrawing,
+  drawings,
+  settings,
+  importedDrawing,
+  svgElement,
+  zoomMultiplier,
+} = storeToRefs(globalSettings);
 
-const multiplier = 3.7795275591;
+const zoom = computed(() => {
+  return zoomMultiplier.value.value / 100;
+  // return 2;
+});
+
+const penWidth = computed(() => {
+  return penWidthInMM.value.value / 100;
+});
 
 const canvasWidth = computed(() => {
   return orientation.value === "portrait"
-    ? paperSizeMapping[size.value].width - 2 * paddingInMM.value.value
-    : paperSizeMapping[size.value].height - 2 * paddingInMM.value.value;
+    ? paperSizeMapping[size.value].width // - 2 * paddingInMM.value.value
+    : paperSizeMapping[size.value].height; // - 2 * paddingInMM.value.value;
 });
 
 const canvasHeight = computed(() => {
   return orientation.value === "portrait"
-    ? paperSizeMapping[size.value].height - 2 * paddingInMM.value.value
-    : paperSizeMapping[size.value].width - 2 * paddingInMM.value.value;
+    ? paperSizeMapping[size.value].height //- 2 * paddingInMM.value.value
+    : paperSizeMapping[size.value].width; //- 2 * paddingInMM.value.value;
+});
+
+const canvasPadding = computed(() => {
+  return paddingInMM.value.value;
 });
 
 const toValues = (mmvObj) => {
@@ -36,24 +53,34 @@ const toValues = (mmvObj) => {
 </script>
 
 <template>
-  <svg
-    v-if="importedDrawing"
-    id="svg"
-    xmlns="http://www.w3.org/2000/svg"
-    :width="canvasWidth * multiplier"
-    :height="canvasHeight * multiplier"
-    ref="svgElement"
-    :style="{
-      'stroke-width': multiplier * penWidthInMM + 'px',
-      padding: multiplier * paddingInMM.value + 'px',
-    }"
-    v-html="importedDrawing.default.draw(toValues(settings))"
-  ></svg>
+  <div
+    class="page"
+    :style="{ padding: canvasPadding + 'px', transform: `scale(${zoom})` }"
+  >
+    <svg
+      v-if="importedDrawing"
+      id="svg"
+      xmlns="http://www.w3.org/2000/svg"
+      :width="canvasWidth"
+      :viewBox="`0 0 ${canvasWidth} ${canvasHeight}`"
+      :height="canvasHeight"
+      ref="svgElement"
+      :style="{
+        'stroke-width': penWidth + 'px',
+      }"
+      v-html="importedDrawing.default.draw(toValues(settings))"
+    ></svg>
+  </div>
 </template>
 
 <style>
-#svg {
+.page {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  transform-origin: top center;
+}
+
+#svg {
+  box-sizing: content-box;
 }
 
 #svg path,

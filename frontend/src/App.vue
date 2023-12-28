@@ -36,13 +36,12 @@ watch(
 <template>
   <div class="topbar mb-6 px-4 py-2 bg-stone-600">
     <div class="m-auto flex items-center gap-5 justify-between">
-      <PrinterStatus class="text-white" />
-      <div class="w-[20mm] h-3 bg-white"></div>
+      <!--      <PrinterStatus class="text-white" />-->
       <DrawingSelector class="drawing-selector min-w-52" />
     </div>
   </div>
   <div class="px-4 m-auto">
-    <div class="flex gap-4 justify-between">
+    <div class="flex gap-4 justify-between items-start">
       <PrintSettings class="print-settings" />
       <Drawing class="drawing bg-white" />
       <div>

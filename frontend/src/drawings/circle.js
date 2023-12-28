@@ -19,7 +19,7 @@ export default {
       output.push(
         `<path d="${line()(
           data,
-        )}" stroke-opacity="0.1" stroke-width="2px" transform="translate(${radius} ${radius})" fill="none" />`,
+        )}" stroke-opacity="0.1" transform="translate(${radius} ${radius})" fill="none" />`,
       );
     }
 
@@ -29,6 +29,5 @@ export default {
   settings: {
     radius: toMMV(0, 300),
     count: toMMV(0, 50),
-    marius: toMMV(0, 50),
   },
 };

@@ -1,49 +1,53 @@
 <script setup>
 import { storeToRefs } from "pinia";
 import { useGlobalSettings } from "../stores/global.js";
-import { ref } from "vue";
+import { computed, ref } from "vue";
+import { usePrinterSettings } from "../stores/printerSettings.js";
 
 const globalSettings = useGlobalSettings();
+const printerSettings = usePrinterSettings();
 
 const { settings, svgElement } = storeToRefs(globalSettings);
+const { paddingInMM, penWidthInMM, orientation, size } =
+  storeToRefs(printerSettings);
 
 const loadingPreview = ref();
 const loadingPrint = ref();
 
-const print = async () => {
-  if (loadingPrint.value) return;
-  loadingPrint.value = true;
-  await fetch("http://localhost:8080/print", {
+const getPostSettings = () => {
+  return {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
     },
     body: JSON.stringify({
-      svg: svgElement.value.outerHTML,
+      svg: svgElement.value?.outerHTML,
+      paddingInMM: paddingInMM.value.value,
+      penWidthInMM: penWidthInMM.value.value / 100,
+      orientation: orientation.value,
+      size: size.value,
     }),
-  });
+  };
+};
+
+const print = async () => {
+  if (loadingPrint.value) return;
+  loadingPrint.value = true;
+  await fetch("http://localhost:8080/print", getPostSettings());
   loadingPrint.value = false;
 };
 
 const preview = async () => {
   if (loadingPreview.value) return;
   loadingPreview.value = true;
-  await fetch("http://localhost:8080/preview", {
-    method: "POST",
-    headers: {
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      svg: svgElement.value.outerHTML,
-    }),
-  });
-
+  await fetch("http://localhost:8080/preview", getPostSettings());
   loadingPreview.value = false;
 };
 </script>
 
 <template>
   <span class="isolate inline-flex rounded-md shadow-sm">
+    {{ postSettings }}
     <button
       @click="print"
       type="button"

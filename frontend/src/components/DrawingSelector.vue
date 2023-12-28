@@ -19,6 +19,7 @@ const getDrawings = async () => {
   const response = await fetch("http://localhost:8080/files");
   const data = await response.json();
   drawings.value = data;
+  if (selectedDrawing.value) return;
   selectedDrawing.value = data[0];
 };
 

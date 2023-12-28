@@ -50,43 +50,67 @@ app.get("/", (req, res) => {
   res.send("Hello World!");
 });
 
-app.get("/status", async (req, res, next) => {
-  try {
-    const response = await fetch(
-      "http://octopi.local/api/printer",
-      octoPiSettings,
-    );
+app.get("/status", (req, res, next) => {
+  fetch("http://octopi.local/api/printer", octoPiSettings)
+    .then((response) => {
+      return response.json();
+    })
+    .then((data) => {
+      res.send(data);
+    })
+    .catch((err) => {
+      res.status(500).send(err);
+    });
 
-    res.send(await response.json());
-  } catch (err) {
-    res.status(500).send(err);
-  }
+  // try {
+  //   const response = await fetch(
+  //     "http://octopi.local/api/printer",
+  //     octoPiSettings,
+  //   );
+  //
+  //   res.send(await response.json());
+  // } catch (err) {
+  //   res.status(500).send(err);
+  // }
 });
 
 app.post("/preview", async (req, res) => {
   const randomstring = Math.random().toString(36).substring(7);
 
+  console.log(req.body.paddingInMM);
+
+  // console.log(req.body);
+  const vpypeOptions = [
+    "vpype",
+    "--config",
+    "configs/plotter.toml",
+    "read",
+    `svg/generated/${randomstring}.svg`,
+    "penwidth",
+    `${req.body.penWidthInMM}mm`,
+    "pagesize",
+    `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
+    req.body.size,
+    "scaleto",
+    "--origin",
+    `-${req.body.paddingInMM * 2}`,
+    `-${req.body.paddingInMM * 2}`,
+    `${148 - req.body.paddingInMM * 2}mm`,
+    `${210 - req.body.paddingInMM * 2}mm`,
+    // "layout",
+    // "22x22cm",
+    // "translate",
+    // "5cm",
+    // "1cm",
+    "show",
+  ].filter((d) => !!d);
+
+  console.log(vpypeOptions);
+
   await saveSvgLocally(req.body.svg, randomstring);
 
   try {
-    await Bun.spawnSync([
-      "vpype",
-      "--config",
-      "configs/plotter.toml",
-      "read",
-      `svg/generated/${randomstring}.svg`,
-      "penwidth",
-      "0.4mm",
-      "scaleto",
-      "4cm",
-      "44cm",
-      "layout",
-      "22x22cm",
-      "translate",
-      "5cm",
-      "1cm",
-      "show",
-    ]);
+    await Bun.spawnSync(vpypeOptions);
 
     res.send("ok");
   } catch (err) {
