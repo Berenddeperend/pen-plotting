@@ -53,16 +53,16 @@ const toValues = (mmvObj) => {
 </script>
 
 <template>
-  <div
-    class="page -z-10"
-    :style="{ padding: canvasPadding + 'px', transform: `scale(${zoom})` }"
-  >
+  <!--    :style="{ padding: canvasPadding + 'px', transform: `scale(${zoom})` }"-->
+  <div class="page -z-10" :style="{ transform: `scale(${zoom})` }">
     <svg
       v-if="importedDrawing"
       id="svg"
       xmlns="http://www.w3.org/2000/svg"
       :width="canvasWidth + 'mm'"
-      :viewBox="`0 0 ${canvasWidth} ${canvasHeight}`"
+      :viewBox="`${canvasPadding * -1} ${
+        canvasPadding * -1
+      } ${canvasWidth} ${canvasHeight}`"
       :height="canvasHeight + 'mm'"
       ref="svgElement"
       :style="{
