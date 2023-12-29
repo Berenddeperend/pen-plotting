@@ -54,19 +54,19 @@ const toValues = (mmvObj) => {
 
 <template>
   <div
-    class="page"
+    class="page -z-10"
     :style="{ padding: canvasPadding + 'px', transform: `scale(${zoom})` }"
   >
     <svg
       v-if="importedDrawing"
       id="svg"
       xmlns="http://www.w3.org/2000/svg"
-      :width="canvasWidth"
+      :width="canvasWidth + 'mm'"
       :viewBox="`0 0 ${canvasWidth} ${canvasHeight}`"
-      :height="canvasHeight"
+      :height="canvasHeight + 'mm'"
       ref="svgElement"
       :style="{
-        'stroke-width': penWidth + 'px',
+        'stroke-width': penWidth + 'mm',
       }"
       v-html="importedDrawing.default.draw(toValues(settings))"
     ></svg>

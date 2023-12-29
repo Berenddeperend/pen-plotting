@@ -7,13 +7,13 @@ export const useGlobalSettings = defineStore("global", () => {
   const selectedDrawing = useLocalStorage("selectedDrawing");
   const drawings = useLocalStorage("drawings", []);
   const svgElement = ref();
-  const zoomMultiplier = ref(toMMV(1, 1000, 377.95275591));
+  const zoomMultiplier = useLocalStorage("zoom", ref(toMMV(1, 200, 100)));
   const importedDrawing = ref();
   const settings = ref();
   const currentDrawingSettings = useLocalStorage("currentDrawingSettings", {});
 
   const resetZoom = () => {
-    zoomMultiplier.value.value = 377.95275591;
+    zoomMultiplier.value.value = 20.95275591;
   };
 
   return {

@@ -33,9 +33,9 @@ export default {
   },
 
   settings: {
-    rows: toMMV(0, 300, 20),
-    columns: toMMV(0, 300, 20),
+    rows: toMMV(0, 300, 5),
+    columns: toMMV(0, 300, 5),
     spacing: toMMV(0, 100, 24),
-    size: toMMV(0, 50, 40),
+    size: toMMV(0, 50, 10),
   },
 };
