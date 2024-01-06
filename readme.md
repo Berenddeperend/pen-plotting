@@ -16,6 +16,11 @@ The intended flow of this application:
 Random thoughts: can't I use octopi as gcode viewer? Na, that means uploading the gcode, which is a hassle. Keep the gcode on my laptop.
 
 
+Frontend todo's:
+- Allow extra vpype options in a drawing. These should be editable and toggleable.
+- A button to sign the drawing with a signature. Could be either an option in the drawing or a separate drawing.
+- When printing a plot, save its metadata in a database. Create a webpage for each entry. Create and plot a qr code that points to that thing. 
+
 
 
 I think I want some file-based routing system. One vue file is one drawing. 

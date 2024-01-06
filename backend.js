@@ -91,6 +91,7 @@ app.post("/preview", async (req, res) => {
     "pagesize",
     `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
     req.body.size,
+
     // "scaleto",
     // "--origin",
     // `-${req.body.paddingInMM * 2}`,
@@ -100,6 +101,7 @@ app.post("/preview", async (req, res) => {
 
     // "layout",
     // "22x22cm",
+
     // "translate",
     // "5cm",
     // "1cm",
@@ -132,27 +134,32 @@ app.post("/print", async (req, res) => {
 
     await saveSvgLocally(req.body.svg, randomstring);
 
-    const gcode = await Bun.spawnSync([
+    const vpypeOptions = [
       "vpype",
       "--config",
       "configs/plotter.toml",
       "read",
       `svg/generated/${randomstring}.svg`,
       "penwidth",
-      "0.4mm",
-      "scaleto",
-      "10cm",
-      "10cm",
+      `${req.body.penWidthInMM}mm`,
+      "pagesize",
+      `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
+      req.body.size,
       "layout",
       "22x22cm",
       "translate",
+      // `${50 + 36}mm`, // todo: plus half an a5 page which is 3,6
+      // `${10 + 0.5}mm`, //plus half an a5 which is 0.5
       "5cm",
       "1cm",
+      "linemerge",
       "gwrite",
       "-p",
       "plotter",
       `gcode/generated/${randomstring}.gcode`,
-    ]);
+    ].filter((d) => !!d);
+
+    await Bun.spawnSync(vpypeOptions);
 
     const file = Bun.file(`./gcode/generated/${randomstring}.gcode`);
     // const file = Bun.file(`./gcode/generated/bg29uj.gcode`);
