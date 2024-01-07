@@ -23,6 +23,7 @@ const { zoomMultiplier } = storeToRefs(globalSettings);
       :options="['portrait', 'landscape']"
     />
     <Selectbox v-model="paperSize" name="paper size" :options="['a5', 'a6']" />
+
     <RangeSlider name="penWidth (mm / 10)" v-model="penWidthInMM" />
   </div>
 </template>

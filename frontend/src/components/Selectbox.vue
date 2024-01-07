@@ -7,6 +7,12 @@ import {
 } from "@headlessui/vue";
 import { CheckIcon, ChevronUpDownIcon } from "@heroicons/vue/20/solid";
 
+defineProps({
+  name: String,
+  options: Object,
+  modelValue: Object,
+});
+
 const emit = defineEmits(["update:modelValue"]);
 </script>
 
