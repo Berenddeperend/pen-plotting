@@ -8,7 +8,7 @@ import { paperSizeMapping } from "../helpers/helpers.js";
 const globalSettings = useGlobalSettings();
 const printerSettings = usePrinterSettings();
 
-const { paddingInMM, penWidthInMM, size, orientation } =
+const { paddingInMM, penWidthInMM, paperSize, orientation } =
   storeToRefs(printerSettings);
 const {
   selectedDrawing,
@@ -30,14 +30,14 @@ const penWidth = computed(() => {
 
 const canvasWidth = computed(() => {
   return orientation.value === "portrait"
-    ? paperSizeMapping[size.value].width // - 2 * paddingInMM.value.value
-    : paperSizeMapping[size.value].height; // - 2 * paddingInMM.value.value;
+    ? paperSizeMapping[paperSize.value].width // - 2 * paddingInMM.value.value
+    : paperSizeMapping[paperSize.value].height; // - 2 * paddingInMM.value.value;
 });
 
 const canvasHeight = computed(() => {
   return orientation.value === "portrait"
-    ? paperSizeMapping[size.value].height //- 2 * paddingInMM.value.value
-    : paperSizeMapping[size.value].width; //- 2 * paddingInMM.value.value;
+    ? paperSizeMapping[paperSize.value].height //- 2 * paddingInMM.value.value
+    : paperSizeMapping[paperSize.value].width; //- 2 * paddingInMM.value.value;
 });
 
 const canvasPadding = computed(() => {

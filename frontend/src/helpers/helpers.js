@@ -7,7 +7,7 @@ export const toMMV = (min, max, value) => {
 };
 
 export const paperSizeMapping = {
-  a4: { width: 210, height: 297 },
+  a4: { width: 210, height: 297 }, // this assumes portrait. Todo: rewrite to 'tall' and 'short' maybe?
   a5: { width: 148, height: 210 },
   a6: { width: 105, height: 148 },
 };
