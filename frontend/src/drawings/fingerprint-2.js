@@ -4,9 +4,9 @@ import { arc } from "d3";
 import { randomUniform, randomInt } from "d3-random";
 
 export default {
-  name: "bauhaus-half-circles",
+  name: "fingerprint",
   draw: (settings) => {
-    let { columns, radius, rows, gap, ringCount, tilt } = toRaw(settings);
+    let { columns, radius, rows, gap, ringCount, rotation } = toRaw(settings);
 
     const makeHalfCircle = (radius, x, y, rotation = 0) => {
       const arcGenerator = arc()
@@ -20,32 +20,35 @@ export default {
 
     const output = [];
 
-    //
-    for (let column = 0; column < columns; column++) {
-      for (let row = 0; row < rows; row++) {
-        for (let i = 0; i < ringCount; i++) {
-          output.push(
-            makeHalfCircle(
-              radius * (1 - i / ringCount),
-              column * radius * 2 + radius * gap * 0.1 * column,
-              row * radius * 2 + radius * gap * 0.1 * row,
-              (column % 2) * 2 + (row % 2) + tilt * 0.01,
-            ),
-          );
-        }
-      }
+    for (let i = 0; i < ringCount; i++) {
+      output.push(
+        makeHalfCircle(
+          radius * (1 - i / ringCount),
+          radius / 2,
+          radius,
+          rotation,
+        ),
+      );
+
+      output.push(
+        makeHalfCircle(
+          radius * (1 - i / ringCount),
+          radius,
+          radius,
+          rotation + 2,
+        ),
+      );
     }
 
     return output.join("\n");
   },
 
   settings: {
-    // rotation: toMMV(0, 10),
+    rotation: toMMV(0, 4),
     columns: toMMV(0, 100, 4),
     rows: toMMV(0, 100, 6),
-    radius: toMMV(0, 200, 10),
-    ringCount: toMMV(0, 40, 6),
+    radius: toMMV(0, 200, 44),
+    ringCount: toMMV(0, 40, 24),
     gap: toMMV(0, 50, 0),
-    tilt: toMMV(0, 100, 0),
   },
 };

@@ -83,6 +83,10 @@ const toValues = (mmvObj) => {
   box-sizing: content-box;
 }
 
+#svg * {
+  stroke-linecap: round;
+}
+
 #svg path,
 #svg line {
   stroke: slategray;

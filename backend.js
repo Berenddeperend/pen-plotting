@@ -99,8 +99,15 @@ app.post("/preview", async (req, res) => {
     // `${148 - req.body.paddingInMM * 2}mm`,
     // `${210 - req.body.paddingInMM * 2}mm`,
 
-    // "layout",
-    // "22x22cm",
+    //dit ding zet mijn svg in het midden van de pagina ,dat moet niet
+
+    "layout",
+    "-h",
+    "center",
+    "-v",
+    "bottom",
+    // "--no-bbox",
+    "22x22cm",
 
     // "translate",
     // "5cm",
@@ -145,14 +152,20 @@ app.post("/print", async (req, res) => {
       "pagesize",
       `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
       req.body.size,
+
       "layout",
+      "-h",
+      "center",
+      "-v",
+      "bottom",
       "22x22cm",
+
       "translate",
-      // `${50 + 36}mm`, // todo: plus half an a5 page which is 3,6
-      // `${10 + 0.5}mm`, //plus half an a5 which is 0.5
       "5cm",
       "1cm",
+
       "linemerge",
+
       "gwrite",
       "-p",
       "plotter",
