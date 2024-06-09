@@ -1,6 +1,5 @@
 [gwrite.plotter]
 document_start = """G21
-vertical_flip = true
 G17
 G90
 G28

@@ -5,15 +5,15 @@ import { line } from "d3";
 export default {
   name: "zigzags",
   draw: (settings) => {
-    let { intensity, count } = toRaw(settings);
+    let { intensity, lines, zigs, width } = toRaw(settings);
 
     const output = [];
 
-    for (let i = 0; i < count; i++) {
+    for (let i = 0; i < lines; i++) {
       let points = "";
 
-      for (let j = 0; j < 10; j++) {
-        points += `${j * 10},${j % 2 ? intensity + i : 0 + i} `;
+      for (let j = 0; j < zigs; j++) {
+        points += `${(j * width) / zigs},${j % 2 ? intensity + i : i} `;
       }
 
       output.push(`<polyline points="${points}" fill="none" stroke="black" />`);
@@ -24,6 +24,8 @@ export default {
 
   settings: {
     intensity: toMMV(0, 300, 15),
-    count: toMMV(0, 50),
+    zigs: toMMV(0, 30, 10),
+    lines: toMMV(0, 500, 100),
+    width: toMMV(0, 300, 100),
   },
 };

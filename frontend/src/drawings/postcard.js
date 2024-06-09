@@ -4,7 +4,7 @@ import { storeToRefs } from "pinia";
 import { usePrinterSettings } from "../stores/printerSettings.js";
 
 const printerSettings = usePrinterSettings();
-const { paddingInMM, penWidthInMM, paperSize, orientation } =
+const { paddingXInMM, paddingYInMM, penWidthInMM, paperSize, orientation } =
   storeToRefs(printerSettings);
 
 export default {
@@ -23,20 +23,20 @@ export default {
         : paperSizeMapping[paperSize.value]["width"];
 
     const verticalLine = `<line x1="${
-      width / 2 - paddingInMM.value.value
-    } " x2="${width / 2 - paddingInMM.value.value}" y1="0" y2="${
-      height - paddingInMM.value.value * 2
+      width / 2 - paddingXInMM.value.value
+    } " x2="${width / 2 - paddingXInMM.value.value}" y1="0" y2="${
+      height - paddingYInMM.value.value * 2
     }"></line>`;
 
     const output = [verticalLine];
 
     for (let i = 0; i < lineCount; i++) {
       output.push(`<line
-        x1="${width / 2 + paddingInMM.value.value / 4}" x2="${
-          width - paddingInMM.value.value * 2
+        x1="${width / 2 + paddingXInMM.value.value / 4}" x2="${
+          width - paddingXInMM.value.value * 2
         }"
-        y1="${height / 2 + i * spacingY - paddingInMM.value.value}"
-        y2="${height / 2 + i * spacingY - paddingInMM.value.value}"
+        y1="${height / 2 + i * spacingY - paddingYInMM.value.value}"
+        y2="${height / 2 + i * spacingY - paddingYInMM.value.value}"
       ></line>`);
     }
 

@@ -36,7 +36,7 @@ watch(
 <template>
   <div class="topbar mb-6 px-4 py-2 bg-stone-600">
     <div class="m-auto flex items-center gap-5 justify-between">
-      <!--      <PrinterStatus class="text-white" />-->
+      <PrinterStatus class="text-white" />
       <DrawingSelector class="drawing-selector min-w-52" />
     </div>
   </div>

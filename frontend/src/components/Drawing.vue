@@ -8,7 +8,7 @@ import { paperSizeMapping } from "../helpers/helpers.js";
 const globalSettings = useGlobalSettings();
 const printerSettings = usePrinterSettings();
 
-const { paddingInMM, penWidthInMM, paperSize, orientation } =
+const { paddingXInMM, paddingYInMM, penWidthInMM, paperSize, orientation } =
   storeToRefs(printerSettings);
 const {
   selectedDrawing,
@@ -40,8 +40,12 @@ const canvasHeight = computed(() => {
     : paperSizeMapping[paperSize.value].width; //- 2 * paddingInMM.value.value;
 });
 
-const canvasPadding = computed(() => {
-  return paddingInMM.value.value;
+const canvasXPadding = computed(() => {
+  return paddingXInMM.value.value;
+});
+
+const canvasYPadding = computed(() => {
+  return paddingYInMM.value.value;
 });
 
 const toValues = (mmvObj) => {
@@ -60,8 +64,8 @@ const toValues = (mmvObj) => {
       id="svg"
       xmlns="http://www.w3.org/2000/svg"
       :width="canvasWidth + 'mm'"
-      :viewBox="`${canvasPadding * -1} ${
-        canvasPadding * -1
+      :viewBox="`${canvasXPadding * -1} ${
+        canvasYPadding * -1
       } ${canvasWidth} ${canvasHeight}`"
       :height="canvasHeight + 'mm'"
       ref="svgElement"

@@ -6,8 +6,17 @@ import { useLocalStorage } from "@vueuse/core";
 export const usePrinterSettings = defineStore("printerSettings", () => {
   const paperSize = useLocalStorage("paperSize", "a5");
   const orientation = useLocalStorage("orientation", "portrait");
-  const paddingInMM = useLocalStorage("paddingInMM", toMMV(0, 50, 30));
+  const paddingYInMM = useLocalStorage("paddingYInMM", toMMV(0, 50, 30));
+  const paddingXInMM = useLocalStorage("paddingXInMM", toMMV(0, 50, 30));
   const penWidthInMM = useLocalStorage("penWidthInMM", toMMV(0, 100, 40));
+  const fitToMargins = useLocalStorage("fitToMargins", true);
 
-  return { paddingInMM, paperSize, orientation, penWidthInMM };
+  return {
+    paddingYInMM,
+    paddingXInMM,
+    paperSize,
+    orientation,
+    penWidthInMM,
+    fitToMargins,
+  };
 });

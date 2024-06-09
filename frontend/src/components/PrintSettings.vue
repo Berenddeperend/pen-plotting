@@ -4,17 +4,26 @@ import { usePrinterSettings } from "../stores/printerSettings.js";
 import { storeToRefs } from "pinia";
 import { useGlobalSettings } from "../stores/global.js";
 import Selectbox from "./Selectbox.vue";
+import Checkbox from "./Checkbox.vue";
 
 const printerSettings = usePrinterSettings();
 const globalSettings = useGlobalSettings();
 
-const { paddingInMM, penWidthInMM, paperSize, orientation } =
-  storeToRefs(printerSettings);
+const {
+  paddingXInMM,
+  paddingYInMM,
+  penWidthInMM,
+  paperSize,
+  orientation,
+  fitToMargins,
+} = storeToRefs(printerSettings);
 const { zoomMultiplier } = storeToRefs(globalSettings);
 </script>
 <template>
   <div>
-    <RangeSlider name="padding (mm)" v-model="paddingInMM" />
+    <h2 class="font-bold mb-4">Plotter settings</h2>
+    <RangeSlider name="paddingX (mm)" v-model="paddingXInMM" />
+    <RangeSlider name="paddingY (mm)" v-model="paddingYInMM" />
     <RangeSlider name="zoom" v-model="zoomMultiplier" />
 
     <Selectbox
@@ -25,5 +34,11 @@ const { zoomMultiplier } = storeToRefs(globalSettings);
     <Selectbox v-model="paperSize" name="paper size" :options="['a5', 'a6']" />
 
     <RangeSlider name="penWidth (mm / 10)" v-model="penWidthInMM" />
+
+    <h2 class="font-bold my-4">Vpype settings</h2>
+
+    <Checkbox v-model="fitToMargins" name="Fit to margins"
+      >Fit to margins</Checkbox
+    >
   </div>
 </template>

@@ -8,7 +8,7 @@ const globalSettings = useGlobalSettings();
 const printerSettings = usePrinterSettings();
 
 const { settings, svgElement } = storeToRefs(globalSettings);
-const { paddingInMM, penWidthInMM, orientation, paperSize } =
+const { paddingXInMM, paddingYInMM, penWidthInMM, orientation, paperSize } =
   storeToRefs(printerSettings);
 
 const loadingPreview = ref();
@@ -22,7 +22,8 @@ const getPostSettings = () => {
     },
     body: JSON.stringify({
       svg: svgElement.value?.outerHTML,
-      paddingInMM: paddingInMM.value.value,
+      paddingXInMM: paddingXInMM.value.value,
+      paddingYInMM: paddingYInMM.value.value,
       penWidthInMM: penWidthInMM.value.value / 100,
       orientation: orientation.value,
       size: paperSize.value,

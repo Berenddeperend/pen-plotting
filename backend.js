@@ -74,50 +74,48 @@ app.get("/status", (req, res, next) => {
   // }
 });
 
-app.post("/preview", async (req, res) => {
-  const randomstring = Math.random().toString(36).substring(7);
+const getRandomString = () => Math.random().toString(36).substring(7);
 
-  console.log(req.body.paddingInMM);
-
-  // console.log(req.body);
-  const vpypeOptions = [
+const getVpypeBaseOptions = (req, fileName) => {
+  return [
     "vpype",
     "--config",
     "configs/plotter.toml",
     "read",
-    `svg/generated/${randomstring}.svg`,
+    `svg/generated/${fileName}.svg`,
     "penwidth",
     `${req.body.penWidthInMM}mm`,
     "pagesize",
     `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
     req.body.size,
 
-    // "scaleto",
-    // "--origin",
-    // `-${req.body.paddingInMM * 2}`,
-    // `-${req.body.paddingInMM * 2}`,
-    // `${148 - req.body.paddingInMM * 2}mm`,
-    // `${210 - req.body.paddingInMM * 2}mm`,
-
-    //dit ding zet mijn svg in het midden van de pagina ,dat moet niet
-
     "layout",
+
+    "--fit-to-margins",
+    `${Math.max(req.body.paddingXInMM, req.body.paddingYInMM)}mm`,
+
     "-h",
     "center",
     "-v",
-    "bottom",
-    // "--no-bbox",
+    "center",
     "22x22cm",
+    // "14.85x21cm",
 
-    // "translate",
-    // "5cm",
-    // "1cm",
-    "show",
+    "translate",
+    "5cm",
+    "1cm",
   ].filter((d) => !!d);
+};
 
-  console.log(vpypeOptions);
+app.get("/hello-world", (req, res) => {
+  res.send("Hello World");
+});
 
-  await saveSvgLocally(req.body.svg, randomstring);
+app.post("/preview", async (req, res) => {
+  const fileName = getRandomString();
+  const vpypeOptions = [...getVpypeBaseOptions(req, fileName), "show"];
+
+  await saveSvgLocally(req.body.svg, fileName);
 
   try {
     await Bun.spawnSync(vpypeOptions);
@@ -137,40 +135,19 @@ app.post("/print", async (req, res) => {
    * */
 
   try {
-    const randomstring = Math.random().toString(36).substring(7);
+    const randomstring = getRandomString();
 
     await saveSvgLocally(req.body.svg, randomstring);
 
     const vpypeOptions = [
-      "vpype",
-      "--config",
-      "configs/plotter.toml",
-      "read",
-      `svg/generated/${randomstring}.svg`,
-      "penwidth",
-      `${req.body.penWidthInMM}mm`,
-      "pagesize",
-      `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
-      req.body.size,
-
-      "layout",
-      "-h",
-      "center",
-      "-v",
-      "bottom",
-      "22x22cm",
-
-      "translate",
-      "5cm",
-      "1cm",
-
-      "linemerge",
+      ...getVpypeBaseOptions(req, randomstring),
+      // "linemerge",
 
       "gwrite",
       "-p",
       "plotter",
       `gcode/generated/${randomstring}.gcode`,
-    ].filter((d) => !!d);
+    ];
 
     await Bun.spawnSync(vpypeOptions);
 
