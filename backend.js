@@ -1,6 +1,7 @@
 import express from "express";
 import fs from "fs";
 import cors from "cors";
+import { $ } from "bun";
 
 const octoPiSettings = {
   headers: {
@@ -91,8 +92,8 @@ const getVpypeBaseOptions = (req, fileName) => {
 
     "layout",
 
-    "--fit-to-margins",
-    `${Math.max(req.body.paddingXInMM, req.body.paddingYInMM)}mm`,
+    // "--fit-to-margins",
+    // `${Math.max(req.body.paddingXInMM, req.body.paddingYInMM)}mm`,
 
     "-h",
     "center",
@@ -118,7 +119,8 @@ app.post("/preview", async (req, res) => {
   await saveSvgLocally(req.body.svg, fileName);
 
   try {
-    await Bun.spawnSync(vpypeOptions);
+    // await Bun.spawnSync(vpypeOptions);
+    await $`${vpypeOptions}`;
 
     res.send("ok");
   } catch (err) {
