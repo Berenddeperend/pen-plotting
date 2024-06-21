@@ -7,14 +7,10 @@ const printerSettings = usePrinterSettings();
 const { paddingXInMM, paddingYInMM, paperSize, penWidthInMM } =
   storeToRefs(printerSettings);
 
-console.log(penWidthInMM.value.value);
-
 export default {
   name: "diagnostic",
   draw: (settings) => {
     const output = [];
-
-    console.log(paddingXInMM.value);
 
     //draw a square
     output.push(

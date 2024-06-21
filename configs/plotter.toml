@@ -15,3 +15,6 @@ G0 Z40
 M84 X Y E
 """
 unit = "mm"
+offset_x = 55
+offset_y = -20
+vertical_flip = true

@@ -81,7 +81,7 @@ const getVpypeBaseOptions = (req, fileName) => {
   return [
     "vpype",
     "--config",
-    "configs/plotter.toml",
+    "configs/plotter.toml", //vpype-gcode config
     "read",
     `svg/generated/${fileName}.svg`,
     "penwidth",
@@ -98,13 +98,15 @@ const getVpypeBaseOptions = (req, fileName) => {
     "-h",
     "center",
     "-v",
-    "center",
+    "bottom",
+    "-b",
     "22x22cm",
+
     // "14.85x21cm",
 
-    "translate",
-    "5cm",
-    "1cm",
+    // "translate",
+    // "5cm",
+    // "1cm",
   ].filter((d) => !!d);
 };
 
