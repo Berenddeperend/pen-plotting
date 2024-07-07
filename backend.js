@@ -101,12 +101,6 @@ const getVpypeBaseOptions = (req, fileName) => {
     "bottom",
     "-b",
     "22x22cm",
-
-    // "14.85x21cm",
-
-    // "translate",
-    // "5cm",
-    // "1cm",
   ].filter((d) => !!d);
 };
 
@@ -119,6 +113,51 @@ app.post("/preview", async (req, res) => {
   const vpypeOptions = [...getVpypeBaseOptions(req, fileName), "show"];
 
   await saveSvgLocally(req.body.svg, fileName);
+
+  try {
+    // await Bun.spawnSync(vpypeOptions);
+    await $`${vpypeOptions}`;
+
+    res.send("ok");
+  } catch (err) {
+    res.status(500).send(err);
+  }
+});
+
+app.post("/preview-code-as-text", async (req, res) => {
+  const vpypeOptions = [
+    "vpype",
+    "--config",
+    "configs/plotter.toml", //vpype-gcode config
+    "penwidth",
+    `${req.body.penWidthInMM}mm`,
+    "pagesize",
+    `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
+    req.body.size,
+    "text",
+    "--wrap",
+    "900",
+    req.body.code,
+    "layout",
+    "-h",
+    "center",
+    "-v",
+    "bottom",
+    "-b",
+    "22x22cm",
+    "show",
+  ].filter((d) => !!d);
+
+  // "let {{ x1, y1, x2, y2, count, spacing }} = toRaw(settings);\n" +
+  // "\n" +
+  // "const lines = [];\n" +
+  // "for (let i = 0; i < count; i++) {{\n" +
+  // "  lines.push(\n" +
+  // '    `<line x1="${{x1 + i}}" y1="${{y1 + i}}" x2="${{x2}}" y2="${{y2}}" />`,\n' +
+  // "  );\n" +
+  // "  y1 += spacing;\n" +
+  // "}}\n" +
+  // 'return lines.join("\\n");',
 
   try {
     // await Bun.spawnSync(vpypeOptions);

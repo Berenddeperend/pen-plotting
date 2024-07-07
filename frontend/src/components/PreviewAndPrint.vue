@@ -31,17 +31,63 @@ const getPostSettings = () => {
   };
 };
 
+const createPost = (body) => {
+  return {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify(body),
+  };
+};
+
+const getCommonPostBody = () => {
+  return {
+    paddingXInMM: paddingXInMM.value.value,
+    paddingYInMM: paddingYInMM.value.value,
+    penWidthInMM: penWidthInMM.value.value / 100,
+    orientation: orientation.value,
+    size: paperSize.value,
+  };
+};
+
 const print = async () => {
   if (loadingPrint.value) return;
   loadingPrint.value = true;
-  await fetch("http://localhost:8080/print", getPostSettings());
+  await fetch(
+    "http://localhost:8080/print",
+    createPost({
+      ...getCommonPostBody(),
+      svg: svgElement.value?.outerHTML,
+    }),
+  );
   loadingPrint.value = false;
 };
 
 const preview = async () => {
   if (loadingPreview.value) return;
   loadingPreview.value = true;
-  await fetch("http://localhost:8080/preview", getPostSettings());
+  await fetch(
+    "http://localhost:8080/preview",
+    createPost({
+      ...getCommonPostBody(),
+      svg: svgElement.value?.outerHTML,
+    }),
+  );
+  loadingPreview.value = false;
+};
+
+const previewCodeAsText = async () => {
+  if (loadingPreview.value) return;
+  loadingPreview.value = true;
+
+  await fetch(
+    "http://localhost:8080/preview-code-as-text",
+    createPost({
+      ...getCommonPostBody(),
+      code: "ni hau bitches",
+    }),
+  );
   loadingPreview.value = false;
 };
 </script>
@@ -64,6 +110,14 @@ const preview = async () => {
       :class="[loadingPreview ? 'cursor-pointer opacity-50' : '']"
     >
       {{ loadingPreview ? "Generating..." : "Preview" }}
+    </button>
+    <button
+      type="button"
+      @click="previewCodeAsText"
+      class="relative -ml-px inline-flex items-center rounded-r-md bg-white px-3 py-2 text-sm font-semibold text-gray-900 ring-1 ring-inset ring-gray-300 hover:bg-gray-50 focus:z-10"
+      :class="[loadingPreview ? 'cursor-pointer opacity-50' : '']"
+    >
+      {{ loadingPreview ? "Generating..." : "Preview code as text" }}
     </button>
   </span>
 </template>

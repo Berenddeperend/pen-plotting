@@ -9,6 +9,7 @@ import { storeToRefs } from "pinia";
 import DrawingParameters from "./components/DrawingParameters.vue";
 import DrawingSelector from "./components/DrawingSelector.vue";
 import PreviewAndPrint from "./components/PreviewAndPrint.vue";
+import CodeModal from "./components/CodeModal.vue";
 
 const globalSettings = useGlobalSettings();
 
@@ -50,6 +51,8 @@ watch(
       </div>
     </div>
   </div>
+
+  <CodeModal />
 </template>
 
 <style>

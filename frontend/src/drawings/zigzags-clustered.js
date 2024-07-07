@@ -24,8 +24,8 @@ export default {
           const x = (k * width) / zigs;
           const y =
             k % 2
-              ? intensity + j * (lineSpacing / 10) + clusterSpacing * i
-              : i + j * (lineSpacing / 10) + clusterSpacing * i;
+              ? intensity + j * (lineSpacing / 10) + (clusterSpacing / 10) * i
+              : i + j * (lineSpacing / 10) + (clusterSpacing / 10) * i;
 
           points += `${x},${y} `;
         }
@@ -39,12 +39,12 @@ export default {
   },
 
   settings: {
-    intensity: toMMV(0, 300, 6),
+    intensity: toMMV(0, 300, 20),
     zigs: toMMV(0, 30, 10),
-    clusters: toMMV(0, 500, 13),
+    clusters: toMMV(0, 500, 40),
     width: toMMV(0, 300, 73),
-    linesPerCluster: toMMV(0, 10, 8),
-    clusterSpacing: toMMV(0, 10, 7),
+    linesPerCluster: toMMV(0, 10, 1),
+    clusterSpacing: toMMV(0, 100, 10),
     lineSpacing: toMMV(0, 10, 5),
   },
 };
