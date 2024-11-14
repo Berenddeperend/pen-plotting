@@ -15,7 +15,9 @@ export default {
         .startAngle(-Math.PI / 2 + (Math.PI / 2) * rotation)
         .endAngle(Math.PI / 2 + (Math.PI / 2) * rotation);
 
-      return `<path transform="translate(${x}, ${y})" d="${arcGenerator()}" fill="none" />`;
+      return `<path style="stroke: rgb(${x * 2}, ${
+        y * 2
+      }, 100)" transform="translate(${x}, ${y})" d="${arcGenerator()}" fill="none" />`;
     };
 
     const output = [];

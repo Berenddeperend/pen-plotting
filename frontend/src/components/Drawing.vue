@@ -77,7 +77,7 @@ const toValues = (mmvObj) => {
   </div>
 </template>
 
-<style>
+<style lang="scss">
 .page {
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   transform-origin: top center;
@@ -85,14 +85,11 @@ const toValues = (mmvObj) => {
 
 #svg {
   box-sizing: content-box;
-}
 
-#svg * {
-  stroke-linecap: round;
-}
-
-#svg path,
-#svg line {
-  stroke: slategray;
+  * {
+    stroke-linecap: round;
+    stroke: slategray;
+    fill: transparent;
+  }
 }
 </style>
