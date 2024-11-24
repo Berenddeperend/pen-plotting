@@ -16,6 +16,9 @@ The intended flow of this application:
 Random thoughts: can't I use octopi as gcode viewer? Na, that means uploading the gcode, which is a hassle. Keep the gcode on my laptop.
 
 
+Something else that would be cool:
+Physical mixer with linear pots (for a mapped value), and per pot also a rotary encoder knob to set the max value
+
 Frontend todo's:
 - Allow extra vpype options in a drawing. These should be editable and toggleable.
 - A button to sign the drawing with a signature. Could be either an option in the drawing or a separate drawing.
