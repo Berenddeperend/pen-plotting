@@ -42,9 +42,9 @@ export default {
   },
 
   settings: {
-    size: toMMV(0, 100, 5),
-    rows: toMMV(0, 300, 22),
-    columns: toMMV(0, 200, 15),
-    rotation: toMMV(0, 4, 1),
+    size: toMMV(0, 100, 4),
+    rows: toMMV(0, 300, 24),
+    columns: toMMV(0, 200, 16),
+    seed: toMMV(0, 100),
   },
 };
