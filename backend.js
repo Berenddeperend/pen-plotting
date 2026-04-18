@@ -3,6 +3,9 @@ import fs from "fs";
 import cors from "cors";
 import { $ } from "bun";
 
+// const backendURL = "http://octopi.local";
+const backendURL = "http://192.168.2.8";
+
 const octoPiSettings = {
   headers: {
     "X-Api-Key": process.env.OCTOPI_KEY,
@@ -36,7 +39,7 @@ const saveSvgLocally = async (
 
 const getFilesFromPrinter = async () => {
   const response = await fetch(
-    "http://octopi.local/api/files/local",
+    `${backendURL}/api/files/local`,
     octoPiSettings,
   ).catch((err) => {
     throw new Error(err);
@@ -52,7 +55,7 @@ app.get("/", (req, res) => {
 });
 
 app.get("/status", (req, res, next) => {
-  fetch("http://octopi.local/api/printer", octoPiSettings)
+  fetch(`${backendURL}/api/printer`, octoPiSettings)
     .then((response) => {
       return response.json();
     })
@@ -65,7 +68,7 @@ app.get("/status", (req, res, next) => {
 
   // try {
   //   const response = await fetch(
-  //     "http://octopi.local/api/printer",
+  //     "${backendURL}/api/printer",
   //     octoPiSettings,
   //   );
   //
@@ -90,8 +93,9 @@ const getVpypeBaseOptions = (req, fileName) => {
     `${req.body.orientation === "landscape" ? "--landscape" : ""}`,
     req.body.size,
 
-    "layout",
+    req.body.lineMerge ? "linemerge" : "", //todo: untested
 
+    "layout",
     // "--fit-to-margins",
     // `${Math.max(req.body.paddingXInMM, req.body.paddingYInMM)}mm`,
 
@@ -204,7 +208,7 @@ app.post("/print", async (req, res) => {
     const uploadFormData = new FormData();
     uploadFormData.append("file", blob, `${randomstring}.gcode`);
 
-    await fetch(`http://octopi.local/api/files/local`, {
+    await fetch(`${backendURL}/api/files/local`, {
       method: "POST",
       body: uploadFormData,
       headers: {
@@ -212,7 +216,7 @@ app.post("/print", async (req, res) => {
       },
     });
 
-    await fetch(`http://octopi.local/api/files/local/${randomstring}.gcode`, {
+    await fetch(`${backendURL}/api/files/local/${randomstring}.gcode`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

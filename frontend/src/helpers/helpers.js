@@ -10,6 +10,10 @@ export const excapeCodeForPlottingAsText = (code) => {
   return "asdf";
 };
 
+export function lerp(a, b, alpha) {
+  return a + alpha * (b - a);
+}
+
 export const paperSizeMapping = {
   a4: { width: 210, height: 297 }, // this assumes portrait. Todo: rewrite to 'tall' and 'short' maybe?
   a5: { width: 148, height: 210 },

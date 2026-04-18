@@ -15,6 +15,7 @@ const {
   penWidthInMM,
   paperSize,
   orientation,
+  lineMerge,
   fitToMargins,
 } = storeToRefs(printerSettings);
 const { zoomMultiplier } = storeToRefs(globalSettings);
@@ -40,5 +41,7 @@ const { zoomMultiplier } = storeToRefs(globalSettings);
     <Checkbox v-model="fitToMargins" name="Fit to margins"
       >Fit to margins</Checkbox
     >
+
+    <Checkbox v-model="lineMerge" name="lineMerge">lineMerge</Checkbox>
   </div>
 </template>

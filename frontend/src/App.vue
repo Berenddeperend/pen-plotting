@@ -10,6 +10,7 @@ import DrawingParameters from "./components/DrawingParameters.vue";
 import DrawingSelector from "./components/DrawingSelector.vue";
 import PreviewAndPrint from "./components/PreviewAndPrint.vue";
 import CodeModal from "./components/CodeModal.vue";
+import initHardware from "./services/hardware.js";
 
 const globalSettings = useGlobalSettings();
 
@@ -22,20 +23,25 @@ const asyncImport = async () => {
     `./drawings/${selectedDrawing.value}`
   );
   settings.value = importedDrawing.value.default.settings;
+  console.log("settings in app.vue");
 };
 
 asyncImport();
+
+onMounted(initHardware);
 
 watch(
   () => selectedDrawing.value,
   () => {
     asyncImport();
+    console.log("settings", settings.value);
   },
 );
 </script>
 
 <template>
   <div class="topbar mb-6 px-4 py-2 bg-stone-600">
+    <div id="connectButton">connect to printer</div>
     <div class="m-auto flex items-center gap-5 justify-between">
       <PrinterStatus class="text-white" />
       <DrawingSelector class="drawing-selector min-w-52" />
