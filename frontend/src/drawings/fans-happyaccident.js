@@ -11,6 +11,12 @@ export default {
 
     for (let column = 0; column < columns; column++) {
       for (let row = 0; row < rows; row++) {
+        const even = row % 2 === 0;
+
+        if (even && column === columns - 1) {
+          continue;
+        }
+
         // const x = column * size + size * 0.5;
         const x = alternate
           ? column * size + size * 0.5 + size / 2
@@ -26,15 +32,18 @@ export default {
         }
 
         for (let strand = 0; strand < strands; strand++) {
-          const lerpedX = lerp(
-            column * size,
-            column * size + size,
-            strand / (strands - 1),
-          );
+          const lerpedX = alternate
+            ? lerp(
+                column * size + (!even ? 0 : size / 2),
+                column * size + size + (!even ? 0 : size / 2),
+                strand / (strands - 1),
+              )
+            : lerp(column * size, column * size + size, strand / (strands - 1));
 
           output.push(
-            // `<path d="M ${x} ${y})}" fill="none" stroke="black"></path>`,
-            `<line x1="${x}" y1="${y}" x2="${lerpedX}" y2="${
+            `<line x1="${
+              alternate && !even ? x - size / 2 : x
+            }" y1="${y}" x2="${lerpedX}" y2="${
               y + size
             }"  fill="none" stroke="black"></line>`,
           );
@@ -47,7 +56,7 @@ export default {
 
   settings: {
     columns: toMMV(0, 100, 4),
-    rows: toMMV(1, 30, 4),
+    rows: toMMV(1, 30, 5),
     size: toMMV(0, 100, 30),
     strands: toMMV(1, 100, 30),
     alternate: { value: false },
